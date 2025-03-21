@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Liste des Articles</h1>
+{% for article in articles %}
+    <div>
+        <h2><a href="{% url 'article_detail' article.pk %}">{{ article.titre }}</a></h2>
+        <p>{{ article.contenu|truncatewords:30 }}</p>
+        <p>Publié par {{ article.auteur }} le {{ article.date_publication }}</p>
+    </div>
+{% empty %}
+    <p>Aucun article disponible.</p>
+{% endfor %}
+<a href="{% url 'article_create' %}">Créer un nouvel article</a>
+{% endblock %}
